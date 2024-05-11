@@ -1,6 +1,272 @@
-/******* Change Box Model ***************/
+/* Change Box Model */
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family: sans-serif;
 }
+
+/* Header Section */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+a[title="Return to home page"] {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: black;
+}
+
+a[title="Click to log in"] {
+  font-size: 1.5rem;
+  color: black;
+}
+
+/* Navigation Section */
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style-type: none;
+  background-color: #242332;
+  padding: 0;
+}
+
+nav li {
+  padding: 1rem 2vw;
+  font-size: clamp(1rem, 2vw, 2rem);
+  color: white;
+}
+
+nav a {
+  color: rgb(255, 255, 255);
+}
+
+nav a:hover {
+  color: white;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+}
+
+/* PRODUCT HIGHLIGHT */
+.highlight-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.product-img {
+  position: relative;
+  z-index: 1;
+}
+
+.feature-card {
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, .80);
+  top: 15%;
+  left: 15%;
+  padding: 0 .5rem 3rem .5rem;
+}
+
+.feature-title {
+  font-size: clamp(2rem, 3vw, 4rem);
+  font-weight: bolder;
+}
+
+.feature-card p {
+  margin: 0;
+  padding: .1rem 0;
+  font-size: clamp(.75rem, 2vw, 1.5rem);
+  font-family: var(--font-sans);
+  color: #5fcce2;
+}
+
+.feature-btn {
+  position: absolute;
+  width: 75%;
+  padding: .5rem 0;
+}
+
+/* REVIEWS */
+h2 {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  margin-bottom: .5rem;
+}
+
+.review-list {
+  margin: 0;
+  padding: 0 1.5rem;
+}
+
+.list-item {
+  margin: 1rem 0;
+}
+
+/* Upgrades Grid */
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem .1rem;
+  max-width: 35rem;
+}
+
+.grid-item {
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.img-container {
+  background-color: #01b0d3;
+  border: 1px solid grey;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  padding: .5rem;
+}
+
+/* Footer */
+footer * {
+  margin: 2rem 0 0 0;
+  padding: 0;
+}
+
+/* INVENTORY PAGES */
+#inv-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+  list-style-type: none;
+  background-color: var(--primary-color);
+  padding: 3rem;
+  margin: 0 auto;
+}
+
+#inv-display li {
+  flex: 1;
+  width: max-content;
+  max-width: 50%;
+  margin: 3rem;
+  padding: 1rem;
+  min-width: min-content;
+  border-radius: 4px;
+}
+
+#inv-display a {
+  color: black;
+}
+
+/* Home Section */
+#home {
+  display: flex;
+  flex-direction: row; /* Change flex direction to row to place items next to each other */
+  gap: 2rem;
+}
+
+.cards-container {
+  display: flex; /* Make the container a flex container */
+  flex-direction: row; /* Display cards side by side */
+  flex: 1; /* Fill available space horizontally */
+}
+
+.home-highlight-card,
+.review-card,
+.upgrade-card {
+  width: 100%; /* Take full width */
+}
+
+@media screen and (min-width: 300px) {
+  #home {
+    flex-direction: column; /* Change flex direction to column */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .home-highlight-card,
+  .upgrade-card,
+  .review-card {
+    width: 100%; /* Take full width */
+    margin-bottom: 2rem; /* Add space between the cards */
+  }
+
+  /* Set background image */
+  body {
+    background-image: url('/images/site/small_check.jpg');
+    background-size: contain;
+    background-repeat: repeat; 
+    margin: 0;
+    padding: 0;
+  }
+  
+  #wrapper {
+    background-color: white;
+    border: 5px solid #98d9ec;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow: hidden;
+    width: 80%;
+    margin: 1rem auto;
+  }
+
+  .feature-card {
+    top: 15%;
+  }
+
+  .feature-title {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    color: #01b0d3;
+  }
+
+  .feature-card p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: #5fcce2;
+  }
+
+  /* Add these lines */
+  .review-card {
+    order: 1; /* Change order to 1 to move it to the right */
+  }
+
+  .upgrade-card {
+    order: -1; /* Change order to -1 to move it to the left */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  /* Change the order for smaller screens */
+  .review-card,
+  .upgrade-card {
+    order: 0; /* Reset order to default */
+  }
+
+  /*.upgrade-card {
+    order: 1; /* Move Home Upgrades card below Home Highlight card */
+  }
+  /*}
+  
+
+}
+
+/* Adjust margin for home review and home upgrade */
+.review-card,
+.upgrade-card {
+  flex-grow: 1; /* Make the cards grow to fill available space */
+  margin: 0 3rem; /* Add a smaller margin */
+  width: 400px; /* Set the width of each card to 50% of the container */
+}
+
