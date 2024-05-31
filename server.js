@@ -12,6 +12,7 @@
   const static = require("./routes/static")
   const baseController = require("./controllers/baseController")
   const inventoryRoute = require("./routes/inventoryRoute")
+  const utilities = require('./utilities');
   
   
   /************************
@@ -25,9 +26,13 @@
   //Index Route
   app.use("/", static)
   // Use the baseController.buildHome for the "/" route
-  app.get("/", baseController.buildHome);
+  app.get("/", baseController.buildHome)
   // Use the inventoryRoute for the "/inv" route
   app.use("/inv", inventoryRoute)
+
+  app.use(async (req, res, next) => {
+    next({ status: 404, message: "Page not found, sorry" })
+  })
 
 
  /* app.get("/", (req, res)=> {
@@ -35,6 +40,22 @@
   })
 
   */
+
+  /* ***********************
+Express Error Handler
+Place after all other middleware
+*************************/
+  app.use(async (err, req, res, next) => {
+    let nav = await utilities.getNav()
+    console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+    res.render("errors/error", {
+      title: err.status || 'Server Error',
+      message: err.message,
+      nav
+    })
+  })
+
+
   
   
   /* ***********************
