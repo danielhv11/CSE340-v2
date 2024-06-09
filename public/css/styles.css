@@ -270,3 +270,33 @@ footer * {
   width: 400px; /* Set the width of each card to 50% of the container */
 }
 
+
+.vehicle {
+  text-align: center;
+  margin: 0 2rem;
+}
+
+.vehicle img {
+  max-width: 90%;
+}
+
+.sold-out {
+  background-color: rgba(150, 15, 15, 0.6);
+}
+
+.sold-out img {
+  filter: grayscale(1);
+}
+
+.notice {
+  color: rgb(220, 0, 0);
+}
+
+@media (min-width: 800px) {
+  .vehicle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
