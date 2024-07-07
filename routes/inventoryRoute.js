@@ -4,6 +4,7 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities");
 const regValidate = require('../utilities/classification-validation')
+
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId)
 
@@ -20,6 +21,14 @@ router.get("/addclassification", utilities.handleErrors(invController.buildByAdd
 
 router.get("/addinventory", utilities.handleErrors(invController.buildByAddInventory));
 
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+router.get("/edit/:inventory_id", utilities.checkUserRole, utilities.handleErrors(invController.buildEditor));
+
+router.get("/delete/:inventory_id", utilities.checkUserRole, utilities.handleErrors(invController.buildByDelete));
+
+
+
 router.post(
     "/addclassification",  
     regValidate.classificationRules(),
@@ -34,9 +43,6 @@ router.post(
     utilities.handleErrors(invController.addInventory)
 )
 
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
-
-router.get("/edit/:inventory_id", utilities.checkUserRole, utilities.handleErrors(invController.buildEditor))
 
 router.post("/update/", 
     utilities.checkUserRole, 
@@ -45,7 +51,6 @@ router.post("/update/",
     utilities.handleErrors(invController.updateInventory))
 
 
-router.get("/delete/:inventory_id", utilities.checkUserRole, utilities.handleErrors(invController.buildByDelete)) 
 
 router.post("/delete/", 
     utilities.checkUserRole, 
